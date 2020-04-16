@@ -24,7 +24,9 @@ If your remote environment use HTTPS you should prepare self signed certificate 
 
 # 4. How to Run
 
-`npm install && sudo BACKEND_HOST=myapp.example.com API_PATH=/api HTTPS=true PORT=8080 npm start` 
+Imagine that your remote backend is placeded on `https://myapp.example.com` and all API is available under `https://myapp.example.com/api`. And locally you run your dev server on port `8080`. So if you want to start work with remote backend you should run:
+
+`npm install && sudo HTTPS=true BACKEND_HOST=myapp.example.com API_PATH=/api PORT=8080 npm start` 
 
 it will install all dependencies and run Chrome instance. Inside this instance you will be able to see your local UI which will work with remote backend. The next environment parameters
 can be used:
