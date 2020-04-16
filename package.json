@@ -1,6 +1,6 @@
 {
   "name": "remote-backend",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "In some casese you don't want (or can't) to run all your project backend locally. Instead of it you prefer to use production server or any other environment as backend. It happens when you want to debug any complex issue which happens only for specific customer or environment. Also it's very usefull when your laptop doesn't have enouhg resources for running all backend stuff.",
   "bin": "./index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "url": "https://github.com/nsakovich/remote-backend/issues"
   },
   "homepage": "https://github.com/nsakovich/remote-backend#readme",
-  "devDependencies": {
+  "dependencies": {
     "chrome-launcher": "^0.13.1",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.3",
