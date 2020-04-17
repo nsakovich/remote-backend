@@ -9,6 +9,11 @@ const https = require('https');
 const fs = require('fs');
 const keys = require('minimist')(process.argv.slice(2));
 
+if (keys.v || keys.version) {
+  console.log(require('./package.json').version);
+  process.exit(0);
+}
+
 if (keys.help) {
     console.log('usage: remote-backend -h myapp.example.com [options]');
     console.log('\n');
