@@ -14,20 +14,21 @@ if (keys.v || keys.version) {
   process.exit(0);
 }
 
-if (keys.help) {
-    console.log('usage: remote-backend -h myapp.example.com [options]');
+if (keys.help || keys.h) {
+    console.log('\n');
+    console.log('usage: remote-backend -b myapp.example.com [options]');
     console.log('\n');
     console.log('options:');
     console.log('-p --port\tPort which is used for your local UI development server [8080]');
     console.log('-s --secure\tShould be set if your remote backend supports only https connection [false]');
-    console.log('-h --host\tYour remote backend host. This value is required');
+    console.log('-b --backend\tYour remote backend host. This value is required');
     console.log('-a --api\tPath under which your api is placed [/api]');
     console.log('-v --version\tPrints current version of this tool');
     console.log('\n');
     process.exit(0);
 }
 
-const BACKEND_HOST = keys.h || keys.host;
+const BACKEND_HOST = keys.b || keys.backend;
 const BACKEND_PORT = keys.s || keys.secure ? '443' : '80';
 const BACKEND_PROTOCOL = keys.s || keys.secure ? 'https' : 'http';
 const HOST = '127.0.0.1';

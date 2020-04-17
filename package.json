@@ -1,6 +1,6 @@
 {
   "name": "remote-backend",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "In some casese you don't want (or can't) to run all your project backend locally. Instead of it you prefer to use production server or any other environment as backend. It happens when you want to debug any complex issue which happens only for specific customer or environment. Also it's very usefull when your laptop doesn't have enouhg resources for running all backend stuff.",
   "bin": "./index.js",
   "scripts": {
