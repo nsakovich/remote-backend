@@ -22,6 +22,7 @@ if (keys.help) {
     console.log('-s --secure\tShould be set if your remote backend supports only https connection [false]');
     console.log('-h --host\tYour remote backend host. This value is required');
     console.log('-a --api\tPath under which your api is placed [/api]');
+    console.log('-v --version\tPrints current version of this tool');
     console.log('\n');
     process.exit(0);
 }
