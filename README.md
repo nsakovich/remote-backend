@@ -24,14 +24,11 @@ If your remote environment use HTTPS you should prepare self signed certificate 
 
 # 4. How to Run
 
-Imagine that your remote backend is placeded on `https://myapp.example.com` and all API is available under `https://myapp.example.com/api`. And locally you run your dev server on port `8080`. So if you want to start work with remote backend you should run:
+Imagine that your remote backend is placeded on `https://myapp.example.com` and all API is available under `https://myapp.example.com/api`. And locally you run your dev server on port `8080`. So if you want to start work with remote backend you should do the next:
 
-`npm install && sudo HTTPS=true BACKEND_HOST=myapp.example.com API_PATH=/api PORT=8080 npm start` 
+`npm install -g remote-backend` - install the tool
+`sudo remote-backend -s -h myapp.example.com -a /api -p 8080` - run it
 
-it will install all dependencies and run Chrome instance. Inside this instance you will be able to see your local UI which will work with remote backend. The next environment parameters
-can be used:
+it will install all dependencies and run Chrome instance. Inside this instance you will be able to see your local UI which will work with remote backend.
 
-- `BACKEND_HOST` - required. It should be the name of host where your remote backend is placed.
-- `API_PATH` - path under which all api call is places. If empty - `/api` will be used.
-- `HTTPS` - should be specified if remote backend works only with HTTPS.
-- `PORT` - port which is used by your local development server. If empty - `8080` will be used. 
+For help run `remote-backend --help`
