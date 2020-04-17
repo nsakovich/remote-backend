@@ -18,6 +18,7 @@ if (keys.help) {
     console.log('-h --host\tYour remote backend host. This value is required');
     console.log('-a --api\tPath under which your api is placed [/api]');
     console.log('\n');
+    process.exit(0);
 }
 
 const BACKEND_HOST = keys.h || keys.host;
