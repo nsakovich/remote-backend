@@ -22,7 +22,7 @@ if (keys.help || keys.h) {
     console.log('-p --port\tPort which is used for your local UI development server [8080]');
     console.log('-s --secure\tShould be set if your remote backend supports only https connection [false]');
     console.log('-b --backend\tYour remote backend host. This value is required');
-    console.log('-a --api\tPath under which your api is placed [/api]');
+    console.log('-a --api\tPath under which your api is placed. Can be comma separated. [/api]');
     console.log('-v --version\tPrints current version of this tool');
     console.log('\n');
     process.exit(0);
@@ -41,7 +41,11 @@ if (!BACKEND_HOST) {
     process.exit(1);
 }
 
-app.use(`${keys.a || keys.api || '/api'}`, createProxyMiddleware({ target: `${BACKEND_PROTOCOL}://${BACKEND_HOST}:${BACKEND_PORT}`, changeOrigin: true, logLevel: 'debug'}));
+const apiPath = keys.a || keys.api || '/api';
+apiPath.split(',').forEach((path) => {
+    app.use(`${path.trim()}`, createProxyMiddleware({ target: `${BACKEND_PROTOCOL}://${BACKEND_HOST}:${BACKEND_PORT}`, changeOrigin: true, logLevel: 'debug'}));
+});
+
 app.use('/*', createProxyMiddleware({ target: `http://${HOST}:${UI_PORT}`, changeOrigin: true, logLevel: 'debug' }));
 
 chromeLauncher.launch({
