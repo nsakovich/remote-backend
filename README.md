@@ -31,4 +31,6 @@ Imagine that your remote backend is placeded on `https://myapp.example.com` and 
 
 it will install all dependencies and run Chrome instance. Inside this instance you will be able to see your local UI which will work with remote backend.
 
+Also you can use reversed case when on your laptop you have only dev server with API and you want to try how it will work with remote UI. For this just add -r key: `sudo remote-backend -s -r -b myapp.example.com -a /api -p 8080`
+
 For help run `remote-backend --help`
