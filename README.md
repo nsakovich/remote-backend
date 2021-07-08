@@ -12,7 +12,11 @@ And motivation of this project is to help you to do this.
 - Google Chrome should be installed on your development machine. 99% developers already have it.
 - NodeJS and NPM should be installed
 
-# 3. SSL support
+# 3. How it works
+
+![How it works](diagram.png)
+
+# 4. SSL support
 
 If your remote environment use HTTPS you should prepare self signed certificate for work with it. For example if your remote backend use domain: myapp.example.com you should do the next:
 
@@ -22,7 +26,7 @@ If your remote environment use HTTPS you should prepare self signed certificate 
    - `openssl req -new -sha256 -key server.key -out server.csr` - create signing request. Enter myapp.example.com as a "Common Name". Leave password blank.
    - `openssl req -x509 -sha256 -days 365 -key server.key -in server.csr -out server.crt` - generate self-signed certificate.
 
-# 4. How to Run
+# 5. How to Run
 
 Imagine that your remote backend is placeded on `https://myapp.example.com` and all API is available under `https://myapp.example.com/api`. And locally you run your dev server on port `8080`. So if you want to start work with remote backend you should do the next:
 
