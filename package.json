@@ -4,13 +4,21 @@
   "description": "In some casese you don't want (or can't) to run all your project backend locally. Instead of it you prefer to use production server or any other environment as backend. It happens when you want to debug any complex issue which happens only for specific customer or environment. Also it's very usefull when your laptop doesn't have enouhg resources for running all backend stuff.",
   "bin": "./index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "./node_modules/.bin/eslint index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nsakovich/remote-backend.git"
   },
-  "keywords": ["ui", "frontend", "backend", "proxy", "development", "fast work"],
+  "keywords": [
+    "ui",
+    "frontend",
+    "backend",
+    "proxy",
+    "development",
+    "fast work"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -23,5 +31,11 @@
     "http-proxy-middleware": "^1.0.3",
     "https": "^1.0.0",
     "minimist": "^1.2.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "husky": "^7.0.1"
   }
 }
