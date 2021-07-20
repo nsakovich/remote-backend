@@ -1,5 +1,6 @@
 node_modules
 tmp-chrome
+tmp-firefox
 server.crt
 server.csr
 server.key

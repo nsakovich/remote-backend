@@ -9,7 +9,7 @@ And motivation of this project is to help you to do this.
 # 2. Requirements and limitations
 
 - you should already have light development server which runs your UI locally. If your project is still a big monolit and you don't use microservice architecture it will not help you
-- Google Chrome should be installed on your development machine. 99% developers already have it.
+- Google Chrome or Firefox should be installed on your development machine. 99% developers already have it.
 - NodeJS and NPM should be installed
 
 # 3. How it works
@@ -33,7 +33,7 @@ Imagine that your remote backend is placeded on `https://myapp.example.com` and 
 `npm install -g remote-backend` - install the tool\
 `sudo remote-backend -s -b myapp.example.com -a /api -p 8080` - run it
 
-it will install all dependencies and run Chrome instance. Inside this instance you will be able to see your local UI which will work with remote backend.
+it will install all dependencies and run Chrome (or Firefox if you will add -f or --firefox key) instance. Inside this instance you will be able to see your local UI which will work with remote backend.
 
 Also you can use reversed case when on your laptop you have only dev server with API and you want to try how it will work with remote UI. For this just add -r key: `sudo remote-backend -s -r -b myapp.example.com -a /api -p 8080`
 

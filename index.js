@@ -2,6 +2,8 @@
 
 const express = require('express');
 const chromeLauncher = require('chrome-launcher');
+const firefoxLauncher = require('firefox-launch');
+const os = require('os');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const https = require('https');
 const fs = require('fs');
@@ -36,6 +38,7 @@ if (keys.help || keys.h) {
     console.log('-b --backend\tRemote server host name. This value is required');
     console.log(`-a --api\tPath under which API is placed. Can be comma separated. [${DEFAULT_API_PATH}]`);
     console.log('-r --reversed\tShoud be set if you want to use reverse mode - when UI is remoted and backend is local. [false]');
+    console.log('-f --firefox\tWill start Firefox instead of Chrome. [false]');
     console.log('-v --version\tPrints current version of this tool');
     console.log('\n');
     process.exit(0);
@@ -55,15 +58,34 @@ apiPath.split(',').forEach((path) => {
 
 app.use('/*', createProxyMiddleware({ target: `${IS_REVERSED ? REMOTE_PROTOCOL : 'http'}://${IS_REVERSED ? REMOTE_HOST : HOST}:${IS_REVERSED ? REMOTE_PORT : DEV_PORT}`, changeOrigin: true, logLevel: 'debug' }));
 
-chromeLauncher.launch({
-    startingUrl: `${REMOTE_PROTOCOL}://${REMOTE_HOST}/`,
-    chromeFlags: [
-        '--ignore-certificate-errors',
-        `--host-rules=MAP ${REMOTE_HOST} ${HOST}`,
-        '--user-data-dir=./tmp-chrome',
-        '--no-sandbox',
-    ],
-});
+const isFirefox = keys.f || keys.firefox;
+
+if (isFirefox) {
+    const prefs = [
+        'user_pref("browser.shell.checkDefaultBrowser", false);',
+        'user_pref("browser.bookmarks.restore_default_bookmarks", false);',
+        'user_pref("dom.allow_scripts_to_close_windows", true);',
+        'user_pref("dom.disable_open_during_load", false);',
+        'user_pref("dom.max_script_run_time", 0);',
+        `user_pref("network.dns.localDomains", "${REMOTE_HOST}");`,
+    ].join('\n');
+
+    firefoxLauncher(`${REMOTE_PROTOCOL}://${REMOTE_HOST}/`, {
+        pref: prefs,
+        dir: './tmp-firefox',
+        env: { HOME: os.userInfo().homedir },
+    });
+} else {
+    chromeLauncher.launch({
+        startingUrl: `${REMOTE_PROTOCOL}://${REMOTE_HOST}/`,
+        chromeFlags: [
+            '--ignore-certificate-errors',
+            `--host-rules=MAP ${REMOTE_HOST} ${HOST}`,
+            '--user-data-dir=./tmp-chrome',
+            '--no-sandbox',
+        ],
+    });
+}
 
 if (keys.s || keys.secure) {
     const httpsServer = https.createServer({
